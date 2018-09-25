@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: staging-db-headless-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: staging-db-headless-service
+subsets:
+  - addresses:
+      - ip: 10.0.0.111
+    ports:
+      - port: 3306
